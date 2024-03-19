@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                {% comment %} <a class="navbar-brand" href="{% url 'index' %}">TouCan$Dust</a> {% endcomment %}
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'signup' %}">Signin</a></li>
+                {% if request.session.username %}
+                <li><a href="{% url 'signout' %}">Signout</a></li>
+                {% endif %}
+                {% if request.session.username %}
+                <li><a href="{% url 'changepassword' %}">change password</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>

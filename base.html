@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #f8f9fa;
+                padding: 20px;
+            }
+            .container {
+                max-width: 500px;
+                margin: auto;
+            }
+            .jumbotron {
+                background-color: #ffffff;
+                padding: 20px;
+            }
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #f8f9fa;
+                color: black;
+                text-align: center;
+            }
+            .image-container {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            .image-container img {
+                flex: 1 0 21%; /* The width will be 21%, but will grow or shrink in order to prevent overflow (0 21%) */
+                margin: 5px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            }
+        </style>
+    </head>
+<body>
+    {% include 'layout/navbar.html' %}
+
+    {% block content %} {% endblock %}
+
+    <div class="footer">
+        <p>© 2023 TouCan$Dust. All rights reserved.</p>
+    </div> 
+</body>
+</html>
