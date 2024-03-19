@@ -1,0 +1,157 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+          background-image: url('{% static "images/img2.jpg" %}');
+        }
+
+        .heading {
+            padding: 1%;
+        }
+
+        .main-sec {
+            width: 200% !important;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: brown;
+            color: #fff;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            padding: 20px;
+        }
+
+        .card-body {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            color: red;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: brown;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <section >
+        <div class="container ">
+          
+                
+        
+            
+
+
+    <div class="heading">
+        <h2 class="text-center text-white mb-4" style="color: white;">Create User</h2>
+    </div>
+    <div class="container">
+        <div class="main-sec">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0">Signup</h3>
+                        </div>
+                        <div class="card-body"> 
+                            
+                            <form action="" method="post" id="contactForm" class="form" role="form">
+                                {% csrf_token %}
+                                {% if form.errors %}
+                                <div class="alert alert-danger">{{form.errors}}</div>
+                                {% endif %}
+                                {% if msg %}
+                                <div class="alert alert-success">{{msg}}</div>
+                                {% endif %}
+                                <div class="row">
+                                <div class="col-md-6 mb-4">
+                                <div class="form-group">
+                                    <label for="{{form.username.id_for_label}}">Username</label>
+                                    {{form.username}}
+                                </div>
+                                </div>
+                                {% comment %} <div class="form-group">
+                                    <label for="{{form.first_name.id_for_label}}">Name</label>
+                                    {{form.first_name}}
+                                </div> {% endcomment %}
+                                <div class="col-md-6 mb-4">
+                                 
+                                  <div class="form-group">
+                                    <label for="{{form.email.id_for_label}}">Email</label>
+                                    {{form.email}}
+                                  </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                  <div class="form-group" >
+                                    <label for="{{form.password1.id_for_label}}">Password</label>
+                                    {{form.password1}}
+                                  </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                  <div class="form-group">
+                                    <label for="{{form.password2.id_for_label}}">Confirm Password</label>
+                                    {{form.password2}}
+                                  </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                  <div class="form-group">
+                                    <label for="{{form.birth_date.id_for_label}}">Birth Date</label>
+                                    {{form.birth_date}}
+                                  </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                  <div class="form-group">
+                                    <label for="{{form.phone.id_for_label}}">Phone</label>
+                                    {{form.phone}}
+                                  </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg">Signup</button>
+                                
+                            </form>
+                           
+                               
+                              
+                            </div>
+              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+               
+
+
+</body>
+</html>
+{% endblock %}

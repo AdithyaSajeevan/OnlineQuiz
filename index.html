@@ -1,0 +1,83 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('{% static "images/img2.jpg" %}');
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding-top: 10%;
+        }
+
+        .img-sec {
+            display: flex;
+            gap: 2%;
+        }
+
+        .images {
+            width: 25%;
+            height: 230px;
+            border-radius: 3%;
+            border: 1px double #3865a5;
+        }
+
+        .jumbotron {
+            background-color: #ffffff;
+            padding: 20px;
+           
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body style="background-image src: {% static 'images/img1.jpg'%};">
+    <div class="container">
+        <div class="jumbotron text-center" >
+            {% comment %} <h1>- Register your account</h1>
+            <p>Join us today for an amazing experience.</p>
+            <a href="{% url 'register' %}" class="btn btn-primary">Register</a> {% endcomment %}
+            {% if   'register' %}
+                <h1>Welcome-{{ request.session.username }} - </h1>
+                <p>Join us today for an amazing experience.</p>
+                <a href="{% url 'signup' %}" class="btn btn-primary">start</a>
+            {% else %}  
+                <h1>- Register your account</h1>
+                <p>Join us today for an amazing experience.</p>
+                <a href="{% url 'register' %}" class="btn btn-primary">start</a>
+            {% endif %}
+        </div>
+    </div>
+    {% comment %} <div class="img-sec">
+        {% if images %}
+        {% for img in images %}
+        {% if img.images %}
+        <img class="images" src="{{img.images.url}}" alt="">
+        {% else %}
+        <img class="images" class="first-thumbnail" src="{% static 'images/img1.jpg' %}" alt="">
+        {% endif%}
+        {% endfor %}
+        {% endif %}
+    </div> {% endcomment %}
+</body>
+</html>
+{% endblock %}

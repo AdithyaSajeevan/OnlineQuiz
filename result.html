@@ -1,0 +1,44 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Result</title>
+    <style>
+        body {
+            background-image: url('{% static "images/img2.jpg" %}');
+            text-align: center;
+            color: whitesmoke;
+           
+        }
+    </style>
+</head>
+
+<body>
+   
+  
+   <div class="card-columns" style="padding: 100px; margin: 10px;">
+       <h1>HERE YOUR RESULT</h1>
+       
+        <div class="card-body" style="font-size: medium;font-weight: bolder;">
+            {% csrf_token %}
+           
+       
+            <h5 class="card-title" style="font-size: medium;font-weight: bolder;">Score: {{ score }}</h5>
+           
+        
+             <p class="card-text">Percentage: {{ percent }}%</p>
+           
+            <p class="card-text">Correct answers: {{ correct }}</p>
+            <p class="card-text">Incorrect answers: {{ wrong }}</p>
+            <p class="card-text">Total questions: {{ total }}</p>
+
+
+            <h5 style="font-size: medium;font-weight: bolder;">All the best for next quiz!</h5>
+        </div>
+    </div>
+</div>
+
+   
+</body>
+</html>
+

@@ -1,0 +1,164 @@
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+  
+</head>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<body>
+   <div class="container"></div>
+   <div  class="topnav">
+	   <a href="{% url 'home' %}">Home</a>
+	   
+	</div>
+   <div class="container ">
+	 <h1 style="text-align: center;">PYTHON</h1>
+	 
+	 <div align="right " id="displaytimer"><b>Timer: 0 seconds</b></div>
+	 
+	  <form method='post' action=''>
+		 {% csrf_token %}
+		 {% if questions %}
+		 {% for q  in questions%}
+		 <div class="form-group">
+		   <label for="question">{{q.question}}</label>
+		 </div>
+		 {% comment %} <div class="form-check">
+			 <div class="form-check">
+				 <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option1" >
+				 <label class="form-check-label" for="gridRadios1">
+					 {{q.op1}}
+				 </label>
+			 </div>
+			 <div class="form-check">
+				 <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2" value="option2">
+				 <label class="form-check-label" for="gridRadios2">
+					 {{q.op2}}
+				 </label>
+			 </div>
+			 <div class="form-check">
+				 <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option3">
+				 <label class="form-check-label" for="gridRadios1">
+					 {{q.op3}}
+				 </label>
+			 </div>
+			 <div class="form-check">
+				 <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2" value="option4">
+				 <label class="form-check-label" for="gridRadios2">
+					 {{q.op4}}
+				 </label>
+			 </div> {% endcomment %}
+		   {% comment %} <div class="form-check">
+			   <input class="form-check-input"  name="{{q.question}}" id="gridRadios2" value="answer">
+			   <label class="form-check-label" for="gridRadios2">
+				   {{q.ans}}
+			   </label>
+		   </div>  {% endcomment %}
+			{% comment %} <br> 
+		</div>    
+		 {% endfor %}
+		 {% endif %}
+		 <input id='timer' type='hidden' name="timer" value="">
+		 <br>
+		 
+		 <button class="btn btn-danger mt-3" style="background-color: blue;">Submit</button> 
+	   </form> 
+{% block script %} {% endcomment %}
+{% comment %} <script>
+
+   console.log('hello world')
+   const timer=document.getElementById('displaytimer')
+   console.log(timer.textContent)
+   const inputtag = document.getElementById('timer')
+
+   t=0
+   setInterval(()=>{
+	   t+=1
+	   timer.innerHTML ="<b>Timer: " +t+" seconds</b>"
+	   inputtag.value = t
+   },1000)
+</script> {% endcomment %}
+{% comment %} {% endblock script %}
+	 
+	 </div>
+   </div>
+</div>
+</body>
+</html>   {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz App</title>
+</head>
+<body>
+
+    <h1 class="container" style="text-align: center;">START QUIZ</h1>
+	<p style="text-align: center;">your time starts now</p>
+	<div id="timer" style="text-align: center;">
+        Time remaining: <span id="time">12</span> seconds
+    </div>
+	
+
+	<form method="POST" action="{% url 'form_save' %}" style="padding:7%;padding-left: 10%;">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div class="question">
+                <p>{{ question.question }}</p>
+                {% for option in question.get_option %}
+				<div>
+					<input type="radio" name="{{ question.uid }}" value="{{ option.option }}" required>
+					<label>{{ option.option }}</label>
+				</div>
+				<div>
+					<input type="radio" name="{{ question.uid }}" value="{{ option.option1 }}" required>
+					<label>{{ option.option1 }}</label>
+				</div>
+				<div>
+					<input type="radio" name="{{ question.uid }}" value="{{ option.option2 }}" required>
+					<label>{{ option.option2 }}</label>
+				</div>
+				<div>
+					<input type="radio" name="{{ question.uid }}" value="{{ option.option3 }}" required>
+					<label>{{ option.option3 }}</label>
+				</div>
+               
+                {% endfor %}
+            </div>
+        {% endfor %}
+		<div style="text-align: center;padding-top: 10%;">
+			<button type="submit" class="btn btn-danger mt-3" style="background-color: blue;padding: .5%;" >Submit</button>
+		</div>
+		
+    </form>
+
+
+    <script>
+        var time = 15; // Set your quiz time limit here (in seconds)
+        var timerElement = document.getElementById('time');
+
+        var timer = setInterval(function() {
+            time--;
+            timerElement.textContent = time;
+
+			if (time <= 0) {
+				clearInterval(timer);
+				alert('Your time is over');
+				// Redirect to home page
+				window.location.href = "{% url 'home' %}";
+			}
+        }, 1000);
+    </script>
+
+
+	
+    
+
+
+   
+  
+</body>
+</html>

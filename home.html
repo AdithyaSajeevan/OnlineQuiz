@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous"> 
+  
+    <!-- Page title -->
+    <title>Django Quiz App</title> 
+    <style>
+        body {
+            background-image: url('{% static "images/img2.jpg" %}');
+            text-align: center;
+            color: whitesmoke;
+           
+        }
+    </style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideToggle("slow");
+  });
+});
+</script>
+<style> 
+#panel, #flip {
+  padding: 4px;
+  text-align: center;
+  background-color: black;
+  border: solid 1px #c3c3c3;
+  width: 150px;
+}
+
+#panel {
+  padding: 20px;
+  display: none;
+  text-align:left;
+}
+</style>
+<body>
+ 
+    
+    <div id="flip">Settings</div>
+    <div id="panel" style="text-align: left;">
+        <a href="{% url 'changepassword' %}">password</a>
+        
+        <a href="{% url 'signout' %}">Signout</a>
+    </div>
+<div class="container mt-5 pt-5"> 
+    <!-- Added the Geeksforgeeks heading here -->
+    <h1 style="color: whitesmoke; text-align: center;">Welcome To Quiz Mansion</h1> 
+  
+    <div class="col-md-6 mx-auto"> 
+        <form action=""> 
+            <div class="form-group"> 
+                <!-- Label for category selection -->
+                <label for="">Select Category</label> 
+                <!-- Dropdown menu for category selection -->
+                <select name="category" id="" class="form-control"> 
+                    <!-- Default "Choose" option -->
+                    <option value="Choose">Choose</option> 
+                    <!-- Loop through categories and create options dynamically -->
+                    {% for category in categories %}
+                    
+                    <option value="{{category.category_name}}">{{category.category_name}}</option> 
+                    {% endfor %} 
+                </select> 
+            </div> 
+            <!-- Submit button -->
+            <button class="btn btn-danger mt-3">Submit</button> 
+        </form> 
+    </div> 
+</div> 
+  
+
+
+</body>
+</html>

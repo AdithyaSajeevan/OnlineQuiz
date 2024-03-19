@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url('{% static "images/img2.jpg" %}');
+           
+            color: whitesmoke;
+           
+        }
+    
+
+    .btn-primary {
+        background-color: blue;
+        text-align: center;
+        
+
+    }
+    </style>
+</head>
+<body style="padding-top: 5%;">
+    <h1 style="text-align: center;">RULES</h1>
+    <h2 style="padding-left: 20%;"><pre >
+        1.Fill out all the questions
+        2.Read the questions carefully 
+        3.Complete before the timeout
+        4.Once you begin the quiz, you must complete it in its entirety
+        5.Exiting the quiz before completion is not permitted
+        6.Please ensure you are ready to complete the quiz in one sitting before you start. 
+    </pre></h2>
+    <h1 style="text-align: center;">Good luck!</h1>
+    <div class="container" style="text-align: center;">
+        <button type="button" class="btn btn-primary mt-3"><a href="{% url 'home' %}">Accept</a></button>
+        
+    </div>
+    
+</body>
+</html>
+
+
